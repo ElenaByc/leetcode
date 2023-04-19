@@ -7,6 +7,5 @@ class Solution:
             arr[i - 1] = 1
             for j in range(1, i - 1):
                 arr[j] = triangle[i - 2][j - 1] +  triangle[i - 2][j]
-            print(arr)
             triangle.append(arr)
         return triangle
