@@ -15,13 +15,25 @@ class Solution:
         
         list_len = index
         l = list_len - k + 1
-        print(l)
+
         if l == k:
             return head
         
         index = 0
         node = head
-        while index < max(l, k):
+    
+        if l < k:
+            while index < k:
+                index += 1
+                if index == l:
+                    value2 = node.val
+                    node.val = value1
+                elif index == k:
+                    node.val = value2
+                    return head
+                node = node.next
+        
+        while index < l:
             index += 1
             if index == l:
                 value2 = node.val
@@ -31,7 +43,7 @@ class Solution:
             
         index = 0
         node = head
-        while index < max(l, k):
+        while index < k:
             index += 1
             if index == k:
                 node.val = value2
