@@ -1,18 +1,15 @@
-class Solution {
-    public int numberOfSubstrings(String s) {
-        int[] count = {0, 0, 0};
-        int res = 0;
-        int i = 0;
-        int n = s.length();
+class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        res = 0
+        i = 0
+        count = {c: 0 for c in 'abc'}
         
-        for (int j = 0; j < n; j++) {
-            count[s.charAt(j) - 'a']++;
-            while (count[0] > 0 && count[1] > 0 && count[2] > 0) {
-                count[s.charAt(i) - 'a']--;
-                i++;
-            }
-            res += i;
-        }
-        return res;
-    }
-}
+        print(count)
+        
+        for j in range(len(s)):
+            count[s[j]] += 1
+            while all(count.values()):
+                count[s[i]] -= 1
+                i += 1
+            res += i
+        return res
