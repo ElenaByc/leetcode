@@ -4,15 +4,29 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+from collections import deque
+
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-        if not root.left and not root.right: #leaf
-            return 1
-        if not root.left:
-            return 1 + self.minDepth(root.right)
-        if not root.right:
-             return 1 + self.minDepth(root.left)
-        return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
         
+        depth = 0
+        q = deque()
+        q.append([root])
+        while q:
+            depth += 1
+            level = q.popleft()
+            next_level = []
+            for node in level:
+                if not node.left and not node.right: # leaf
+                    return depth
+                if node.left:
+                    next_level.append(node.left)
+                if node.right:
+                    next_level.append(node.right)
+            q.append(next_level)
+                
+        return depth
+                
