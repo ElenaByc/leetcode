@@ -1,22 +1,20 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int missing = 0;
         int maxNum = 0;
-        Set<Integer> numbersSet = new HashSet<>();
+        int sum = 0;
 
         for (int n : nums) {
-            numbersSet.add(n);
             if (n > maxNum) {
                 maxNum = n;
             }
+            sum += n;
+        }
+        
+        int missing = (maxNum + 1) * maxNum / 2 - sum;
+        if (missing == 0 && nums.length == maxNum + 1) {
+            missing = maxNum + 1;
         }
 
-        for (int i = 0; i <= maxNum; i++) {
-            if (!numbersSet.contains(i)) {
-                return i;
-            }
-        }
-
-        return maxNum + 1;
+        return missing;
     }
 }
