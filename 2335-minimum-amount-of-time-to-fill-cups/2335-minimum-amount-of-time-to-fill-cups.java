@@ -7,14 +7,14 @@ class Solution {
 
         while (coldcups > 0 || warmcups > 0 || hotcups > 0) {
             if (coldcups <= warmcups && coldcups <= hotcups) {
-                warmcups = warmcups > 0 ? warmcups - 1 : 0;
-                hotcups = hotcups > 0 ? hotcups - 1 : 0;
+                warmcups--;
+                hotcups--;
             } else if (warmcups <= coldcups && warmcups <= hotcups) {
-                hotcups = hotcups > 0 ? hotcups - 1 : 0;
-                coldcups = coldcups > 0 ? coldcups - 1 : 0;
+                hotcups--;
+                coldcups--;
             } else {
-                warmcups = warmcups > 0 ? warmcups - 1 : 0;
-                coldcups = coldcups > 0 ? coldcups - 1 : 0;
+                warmcups--;
+                coldcups--;
             }
             minimumSeconds++;
         }
