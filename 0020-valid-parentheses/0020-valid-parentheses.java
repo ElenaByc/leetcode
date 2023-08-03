@@ -4,7 +4,6 @@ class Solution {
         hm.put(')', '(');
         hm.put('}', '{');
         hm.put(']', '[');
-        hm.put('>', '<');
 
         Stack<Character> stack = new Stack<>();
         char ch;
