@@ -1,16 +1,14 @@
 class Solution {
     public int arithmeticTriplets(int[] nums, int diff) {
+        boolean[] arr = new boolean[201];
+        Arrays.fill(arr, false);
         int counter = 0;
-        int n = nums.length;
-        for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (nums[j] - nums[i] == diff) {
-                    for (int k = j + 1; k < n; k++) {
-                        if (nums[k] - nums[j] == diff) counter++;
-                    }
-                }
+        for (int n : nums) {
+            if (n >= 2 * diff) {
+                if (arr[n - diff] && arr[n - 2* diff]) counter++;
             }
+            arr[n] = true;
         }
-        return  counter;
+        return counter;
     }
 }
