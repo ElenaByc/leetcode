@@ -12,8 +12,8 @@ class Solution {
         //     return capacity.length;
         // }
 
-        System.out.println(Arrays.toString(capacity));
-        System.out.println(freeSpaces);
+//         System.out.println(Arrays.toString(capacity));
+//         System.out.println(freeSpaces);
 
         // HashMap<Integer, Integer> hm = new HashMap<>();
 
