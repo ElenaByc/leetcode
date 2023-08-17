@@ -12,28 +12,26 @@ class Solution {
         //     return capacity.length;
         // }
 
-//         System.out.println(Arrays.toString(capacity));
-//         System.out.println(freeSpaces);
 
-        // HashMap<Integer, Integer> hm = new HashMap<>();
+//         HashMap<Integer, Integer> hm = new HashMap<>();
 
-        // for (int num : capacity) { // O(n)
-        //     hm.put(num, hm.getOrDefault(num, 0) + 1);
-        // }
-        // System.out.println(hm);
-        // for (int i = 0; i <= additionalRocks; i++) {
-        //     if (hm.containsKey(i)) {
-        //         if (i == 0) {
-        //             numOfFullBags += hm.get(0);
-        //         } else if (i * hm.get(i) <= additionalRocks) {
-        //             additionalRocks -= i * hm.get(i);
-        //             numOfFullBags += hm.get(i);
-        //         } else {
-        //             numOfFullBags += additionalRocks / i;
-        //             break;
-        //         }
-        //     }
-        // }
+//         for (int num : capacity) { // O(n)
+//             hm.put(num, hm.getOrDefault(num, 0) + 1);
+//         }
+        
+//         for (int i = 0; i <= additionalRocks; i++) {
+//             if (hm.containsKey(i)) {
+//                 if (i == 0) {
+//                     numOfFullBags += hm.get(0);
+//                 } else if (i * hm.get(i) <= additionalRocks) {
+//                     additionalRocks -= i * hm.get(i);
+//                     numOfFullBags += hm.get(i);
+//                 } else {
+//                     numOfFullBags += additionalRocks / i;
+//                     break;
+//                 }
+//             }
+//         }
 
         Arrays.sort(capacity);
         for (int num: capacity) {
