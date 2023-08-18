@@ -9,7 +9,7 @@ class Solution {
     
         for (int i = 0; i < 2 * n; i += 2) {
             ch = rings.charAt(i);
-            num = Character.getNumericValue(rings.charAt(i + 1));
+            num = rings.charAt(i + 1) - '0';
             // System.out.println("ch = " + ch + " num = " + num);
             switch (ch) {
                 case 'R':
