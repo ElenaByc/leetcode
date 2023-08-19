@@ -1,17 +1,8 @@
 class Solution {
     public boolean repeatedSubstringPattern(String s) {
         int l = s.length();
-	    for (int i = l / 2; i >= 1; i--) {
-            if(l % i == 0) {
-                int m = l / i;
-                String subS = s.substring(0, i);
-                StringBuilder sb = new StringBuilder();
-                for(int j=0; j < m; j++) {
-                    sb.append(subS);
-                }
-                if(sb.toString().equals(s)) return true;
-            }
-        }
-        return false;
+        if (l < 2) return false;
+        String s2 = s.substring(1) + s.substring(0,l-1);
+        return s2.contains(s);
     }
 }
