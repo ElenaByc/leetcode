@@ -2,7 +2,13 @@ class Solution {
     public boolean repeatedSubstringPattern(String s) {
         int l = s.length();
         if (l < 2) return false;
-        String s2 = s.substring(1) + s.substring(0,l-1);
-        return s2.contains(s);
+        for (int i = l / 2; i >= 1; i--) {
+            if (l % i == 0) {
+                if (s.equals((s.substring(0, i)).repeat(l / i))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
