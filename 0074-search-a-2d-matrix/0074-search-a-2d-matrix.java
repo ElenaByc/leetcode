@@ -1,20 +1,26 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
+     //binary search
         int n = matrix.length;
         int m = matrix[0].length;
-        int i = 0;
-        int j = m - 1;
-
-        while (i < n && j >= 0) {
+        int low = 0;
+        int high = m * n - 1;
+        int mid;
+        int i, j;
+        while (low <= high) {
+            mid = low + (high - low) / 2;
+            // calculate i and j
+            i = mid / m;
+            j = mid % m;
             if (matrix[i][j] == target) {
                 return true;
-            } else if (target < matrix[i][j]) {
-                j--;
+            } else if (matrix[i][j] < target) {
+                low = mid + 1;
             } else {
-                i++;
+                high = mid - 1;
             }
         }
-        
+
         return false;
     }
 }
