@@ -1,23 +1,19 @@
 class Solution {
     public int subsetXORSum(int[] nums) {
-        int n = nums.length;
-        int sum = 0;
-        int num;
-        int j = 0;
-        int subsetSum = 0;
-        for (int i = 0; i < Math. pow(2, n); i++) {
-            num = i;
-            subsetSum = 0;
-            j = 0;
-            while (num > 0) {
-                if (num % 2 != 0) {
-                    subsetSum ^= nums[j]; 
-                }
-                num /= 2;
-                j++;
-            }
-            sum += subsetSum;
-        }
-        return sum;
+        return helper(nums, 0, 0);
+    }
+    
+    private int helper(int[] nums, int index, int currentXor) {
+        // return currentXor when all elements in nums are already considered
+        if (index == nums.length) return currentXor;
+        
+        // calculate sum of xor with current element
+        int withElement = helper(nums, index + 1, currentXor ^ nums[index]);
+        
+        // calculate sum of xor without current element
+        int withoutElement = helper(nums, index + 1, currentXor);
+        
+        // return sum of xors from recursion
+        return withElement + withoutElement;
     }
 }
