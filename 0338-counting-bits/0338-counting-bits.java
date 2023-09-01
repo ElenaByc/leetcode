@@ -7,14 +7,12 @@ class Solution {
         } 
         return result;
     }
-    
-        
         
     private int hammingWeight(int n) {
         int ans = 0;
         while (n > 0) {
-            n &= (n - 1);
-            ans++;
+            if (n % 2 == 1) ans++;
+            n /= 2;
         }
         return ans;
     }
