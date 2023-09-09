@@ -1,9 +1,9 @@
 class Solution {
     public int minOperations(int[] nums) {
+        if(nums.length == 1) return 0;
         int res = 0;
         int num = nums[0];
-        int n = nums.length;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < nums.length; i++) {
             if (nums[i] <= num) {
                 res += num - nums[i] + 1;
                 num++;
