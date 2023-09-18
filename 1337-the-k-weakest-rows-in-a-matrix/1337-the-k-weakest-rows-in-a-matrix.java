@@ -13,13 +13,10 @@ class Solution {
         for (int i = 0; i < m; i++) {
             for (j = 0; j < n; j++) {
                 if (mat[i][j] == 0) {
-                    score[i] = j * m + i;
                     break;
                 }
             }
-            if (j == n) {
-                score[i] = j * m + i;
-            }
+            score[i] = j * m + i;
         }
         // System.out.println(Arrays.toString(score));
         Arrays.sort(score);
