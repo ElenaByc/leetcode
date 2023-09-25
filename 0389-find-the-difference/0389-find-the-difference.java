@@ -1,24 +1,9 @@
 class Solution {
     public char findTheDifference(String s, String t) {
-        int[] arr = new int[26];
-        char ch = '0';
-        int position;
-        
+        int dif = 0;
         for (int i = 0; i < s.length(); i++) {
-            ch = s.charAt(i);
-            position = ch - 'a';
-            arr[position]++;
+		    dif += t.charAt(i) - s.charAt(i);
         }
-        
-        for (int i = 0; i < t.length(); i++) {
-            ch = t.charAt(i);
-            position = ch - 'a';
-            arr[position]--;
-            if (arr[position] < 0) {
-                return ch;
-            }
-        }
-        
-        return ch;
+        return (char)(t.charAt(s.length()) + dif); 
     }
 }
