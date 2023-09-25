@@ -1,27 +1,22 @@
 class Solution {
     public char findTheDifference(String s, String t) {
-        HashMap<Character, Integer> hm = new HashMap<>();
-        int val;
+        int[] arr = new int[26];
         char ch = '0';
+        int position;
         
         for (int i = 0; i < s.length(); i++) {
             ch = s.charAt(i);
-            val = hm.getOrDefault(ch, 0);
-            val++;
-            hm.put(ch, val);
+            position = ch - 'a';
+            arr[position]++;
         }
         
         for (int i = 0; i < t.length(); i++) {
             ch = t.charAt(i);
-            val = hm.getOrDefault(ch, 0);
-            if (val == 0) {
+            position = ch - 'a';
+            arr[position]--;
+            if (arr[position] < 0) {
                 return ch;
             }
-            val--;
-            if (val < 0) {
-                return ch;
-            }
-            hm.put(ch, val);
         }
         
         return ch;
