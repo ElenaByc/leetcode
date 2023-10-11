@@ -1,20 +1,18 @@
 class Solution {
     public int countBalls(int lowLimit, int highLimit) {
-        HashMap<Integer, Integer> hm = new HashMap<>();
+        // Since the range is 1 ~ 100_000, 
+        // the biggest possible non-empty box number 
+        // is 9 + 9 + 9 + 9 + 9 = 45, which corresponds to ball 99999
+        int[] count = new int[46];
         int boxNumber;
         int maxNumberOfBalls = 0;
         
         for (int i = lowLimit; i <= highLimit; i++) {
             boxNumber = calculateBoxNumber(i);
-            hm.put(boxNumber, hm.getOrDefault(boxNumber, 0) + 1);
+            count[boxNumber]++;
+            maxNumberOfBalls = Math.max(maxNumberOfBalls, count[boxNumber]);
         }
-        
-        for (int numberOfBalls : hm.values()) {
-            if (numberOfBalls > maxNumberOfBalls) {
-                maxNumberOfBalls = numberOfBalls;
-            }
-        }
-        
+
         return maxNumberOfBalls;
     }
     
