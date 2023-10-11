@@ -9,8 +9,7 @@ class Solution {
         
         for (int i = lowLimit; i <= highLimit; i++) {
             boxNumber = calculateBoxNumber(i);
-            count[boxNumber]++;
-            maxNumberOfBalls = Math.max(maxNumberOfBalls, count[boxNumber]);
+            maxNumberOfBalls = Math.max(maxNumberOfBalls, ++count[boxNumber]);
         }
 
         return maxNumberOfBalls;
