@@ -1,31 +1,17 @@
 class Solution {
     public int findFinalValue(int[] nums, int original) {
-        Arrays.sort(nums);
-        int low = 0;
-        int high = nums.length - 1;
-        low = binarySearch(nums, low, high, original);
+        boolean found = true;
+        Set<Integer> set = new HashSet<>();
         
-        while (low != -1) {
+        for (int num : nums) {
+            set.add(num);
+        }
+        
+        while (found) {
+            found = set.contains(original);
             original *= 2;
-            low = binarySearch(nums, low, high, original);
         }
         
-        return original;
-    }
-    
-    public int binarySearch(int[] nums, int low, int high, int target) {
-        int mid;
-        while (low <= high) {
-            mid = low + (high - low) /2;
-            if (nums[mid] == target) {
-                return mid;
-            } else if (nums[mid] < target) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return -1;
-        
+        return original / 2;
     }
 }
