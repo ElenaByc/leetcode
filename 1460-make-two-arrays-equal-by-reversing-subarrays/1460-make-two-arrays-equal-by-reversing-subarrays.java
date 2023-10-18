@@ -1,19 +1,14 @@
 class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
-        HashMap<Integer, Integer> hm = new HashMap<>();
+        int[] cnt = new int[1001];
+        int n = target.length;
         
-        for (int num : target) {
-            hm.put(num, hm.getOrDefault(num, 0) + 1);
+        for (int i = 0; i < n; i++) {
+            cnt[target[i]]++;
+            cnt[arr[i]]--;
         }
-        
-        for (int num : arr) {
-            if (hm.containsKey(num)) {
-                if (hm.get(num) > 0) {
-                    hm.put(num, hm.get(num) - 1);
-                } else {
-                    return false;
-                }
-            } else {
+        for (int i = 0; i < 1001; i++) {
+            if (cnt[i] != 0) {
                 return false;
             }
         }
