@@ -1,24 +1,14 @@
 class Solution {
     public int minimumOperations(int[] nums) {
-        int cnt = 0;
-        int n = nums.length;
-        Arrays.sort(nums); // O(n log n)
+        // Hint3: The answer is the number of unique non-zero numbers in nums
+        Set<Integer> set = new HashSet<>();
         
-        int lastIdx = 0;
-        while (lastIdx < n && nums[lastIdx] == 0) {
-            lastIdx++;
-        }
-        while (lastIdx < n) {
-            for (int i = lastIdx + 1; i < n; i++) {
-                nums[i] -= nums[lastIdx];
-            }
-            nums[lastIdx] = 0;
-            cnt++;
-            while (lastIdx < n && nums[lastIdx] == 0) {
-                lastIdx++;
+        for (int num : nums) {
+            if (num != 0) {
+                set.add(num);
             }
         }
         
-        return cnt;
+        return set.size();
     }
 }
