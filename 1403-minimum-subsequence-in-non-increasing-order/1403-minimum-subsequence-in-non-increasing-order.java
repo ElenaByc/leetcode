@@ -1,21 +1,13 @@
 class Solution {
     public List<Integer> minSubsequence(int[] nums) {
-        Arrays.sort(nums);
-        int n = nums.length;
-        List<Integer> result = new ArrayList<>();
-        int totalSum = 0;
-        int currSum = 0;
-        for (int num : nums) {
-            totalSum += num;
-        }
-        
-        int i = n - 1;
-        while (currSum <= totalSum - currSum) {
-            result.add(nums[i]);
-            currSum += nums[i];
-            i--;
-        }
-            
-        return result;
+        List<Integer> res = new ArrayList<>();
+        var pq = new PriorityQueue<Integer>(Collections.reverseOrder());
+        pq.addAll(IntStream.of(nums).boxed().collect(Collectors.toList()));
+        int sub_sum = 0, half_sum = IntStream.of(nums).sum() / 2;
+        while (sub_sum <= half_sum) {
+            res.add(pq.peek());
+            sub_sum += pq.poll();
+        }    
+        return res;
     }
 }
