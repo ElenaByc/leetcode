@@ -12,15 +12,14 @@ class Solution {
             while (oddPointer < n && nums[oddPointer] % 2 != 0) {
                 oddPointer += 2;
             }
-            if (evenPointer < n && nums[evenPointer] % 2 != 0) {
-                if (oddPointer < n && nums[oddPointer] % 2 == 0) {
-                    temp = nums[evenPointer];
-                    nums[evenPointer] = nums[oddPointer];
-                    nums[oddPointer] = temp;
-                }
+            if (evenPointer < n && oddPointer < n) {
+                temp = nums[evenPointer];
+                nums[evenPointer] = nums[oddPointer];
+                nums[oddPointer] = temp;
                 evenPointer += 2;
                 oddPointer += 2;
             }
+                
         }
             
         
