@@ -3,18 +3,27 @@ class Solution {
         int evenPointer = 0;
         int oddPointer = 1;
         int n = nums.length;
-        int[] answer = new int[n];
+        int temp;
         
-        for (int i = 0; i < n; i++) {
-            if(nums[i] % 2 == 0) {
-                answer[evenPointer] = nums[i];
+        while (evenPointer < n && oddPointer < n) {
+            while (evenPointer < n && nums[evenPointer] % 2 == 0) { 
                 evenPointer += 2;
-            } else {
-                answer[oddPointer] = nums[i];
+            } 
+            while (oddPointer < n && nums[oddPointer] % 2 != 0) {
+                oddPointer += 2;
+            }
+            if (evenPointer < n && nums[evenPointer] % 2 != 0) {
+                if (oddPointer < n && nums[oddPointer] % 2 == 0) {
+                    temp = nums[evenPointer];
+                    nums[evenPointer] = nums[oddPointer];
+                    nums[oddPointer] = temp;
+                }
+                evenPointer += 2;
                 oddPointer += 2;
             }
         }
+            
         
-        return answer;
+        return nums;
     }
 }
