@@ -1,28 +1,38 @@
 class Solution {
     public int countStudents(int[] students, int[] sandwiches) {
         int n = students.length;
-        int cnt = 0;
+        int students0 = 0;
+        int sandwiches0 = 0;
         
-        Queue<Integer> queue = new LinkedList<>();
-        for (int num : students) {
-             queue.offer(num);
+        for(int s : students){
+            if(s == 0) {
+                students0++;
+            } 
+        }    
+        int students1 = n - students0;
+        
+        for(int s:sandwiches){
+            if(s == 0) {
+                sandwiches0++;
+            }
+        } 
+        if(students0 == sandwiches0){
+            return 0;
         }
         
-        int i = 0; // sandwiches pointer
-        int unableCounter = 0;
-        
-        while (cnt < n && queue.size() > 0 && unableCounter < queue.size()) {
-            if (queue.peek() == sandwiches[i]) {
-                i++;
-                cnt++;
-                queue.poll();
-                unableCounter = 0;
+        for(int s : sandwiches) {
+            if(s == 0){
+                if(students0 == 0) {
+                    return students1;
+                }
+                students0--;
             } else {
-                queue.offer(queue.poll());
-                unableCounter++;
+                if(students1 == 0) {
+                    return students0;
+                }
+                students1--;
             }
         }
-        
-        return n - cnt;
-    }
+        return 0;
+    }  
 }
