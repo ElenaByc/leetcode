@@ -1,9 +1,14 @@
 class Solution {
     public int smallestRangeI(int[] nums, int k) {
-        Arrays.sort(nums);
-        int n = nums.length;
-        if (nums[n-1] - nums[0] == 0) return 0;
-        if  (nums[n-1] - nums[0] <= 2 * k) return 0;
-        return nums[n-1] - nums[0] - 2 * k;
+        // Arrays.sort(nums);
+        int min = 10000;
+        int max = 0;
+        // int n = nums.length;
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+        }
+        if  (max - min <= 2 * k) return 0;
+        return max - min - 2 * k;
     }
 }
