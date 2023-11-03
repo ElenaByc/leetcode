@@ -1,22 +1,13 @@
 class Solution {
     public String greatestLetter(String s) {
-        boolean[] low = new boolean[26];
-        boolean[] upper = new boolean[26];
-        char ch;
-        for (int i = 0; i < s.length(); i++) {
-            ch = s.charAt(i);
-            if (ch >= 'a' && ch <= 'z') {
-                low[ch - 'a'] = true;
-            } else {
-                upper[ch - 'A'] = true;
+        for (int i = 'z'; i >= 'a'; i--) {
+            String lower = Character.toString(i);
+            String upper = Character.toString(i - 32);
+            if (s.contains(lower) && s.contains(upper)) {
+                return upper;
             }
         }
-        for (int i = 25; i >= 0; i--) {
-            if (upper[i] && low[i]) {
-                return "" + (char)('A' + i);
-            }
-        }
-        
+
         return "";
     }
 }
