@@ -3,8 +3,7 @@ class Solution {
         boolean[] low = new boolean[26];
         boolean[] upper = new boolean[26];
         char ch;
-        int n = s.length();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < s.length(); i++) {
             ch = s.charAt(i);
             if (ch >= 'a' && ch <= 'z') {
                 low[ch - 'a'] = true;
