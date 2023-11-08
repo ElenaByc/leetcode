@@ -13,7 +13,7 @@ class Solution {
         int result = 0;
         
         for (int i = left; i <= right; i++) {
-            if (primes.contains(countOnes(i))) {
+            if (primes.contains(Integer.bitCount(i))) {
                 result++;
             }
         }
