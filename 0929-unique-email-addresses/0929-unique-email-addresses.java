@@ -3,22 +3,23 @@ class Solution {
         Set<String> set = new HashSet<>();
         String local;
         String domain;
-        int idx;
+        StringBuilder sb = new StringBuilder();
+        char ch;
         
         for (String email : emails) {
             // separate local name and domain name
             local = email.split("@")[0];
             domain = email.split("@")[1];
-            idx = local.indexOf('+');
-            if (idx != - 1) {
-                local = local.substring(0, idx);
+            for (int i = 0; i < local.length(); i++) {
+                ch = local.charAt(i);
+                if (ch == '.') continue;
+                if (ch == '+') break;
+                sb.append(ch);
             }
-            // remove dots
-            idx = local.indexOf('.');
-            if (idx != - 1) {
-                local = local.replace(".", "");
-            }
-            set.add(local + "@" + domain);
+            sb.append('@');
+            sb.append(domain);
+            set.add(sb.toString());
+            sb.delete(0, sb.length());
         }
 
         return set.size();
