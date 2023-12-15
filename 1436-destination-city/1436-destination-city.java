@@ -1,14 +1,14 @@
 class Solution {
     public String destCity(List<List<String>> paths) {
-        HashMap<String, String> hm = new HashMap<>();
-        
-        for (List<String> list : paths) {
-            hm.put(list.get(0), list.get(1));
+        Set<String> hasOutgoing = new HashSet();
+        for (int i = 0; i < paths.size(); i++) {
+            hasOutgoing.add(paths.get(i).get(0));
         }
         
-        for (List<String> list : paths) {
-            if (!hm.containsKey(list.get(1))) {
-                return list.get(1);
+        for (int i = 0; i < paths.size(); i++) {
+            String candidate = paths.get(i).get(1);
+            if (!hasOutgoing.contains(candidate)) {
+                return candidate;
             }
         }
         
