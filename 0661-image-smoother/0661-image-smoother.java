@@ -47,7 +47,6 @@ class Solution {
                         cnt++;
                     }
                 }
-                System.out.println("sum = " + sum + "     cnt = " + cnt);
                 result[i][j] = sum / cnt;
             }
         }
