@@ -18,9 +18,6 @@ class Solution {
             }
         }
         
-        System.out.println("min1 = " + min1);
-        System.out.println("min2 = " + min2);
-        
         if (min1 + min2 <= money) {
             return money - min1 - min2;
         }
