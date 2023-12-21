@@ -6,10 +6,9 @@ class Solution {
         
         for (int i = 0; i < n - 1; i++) {
             sum = nums[i] + nums[i + 1];
-            if (set.contains(sum)) {
+            if(!set.add(sum)) {
                 return true;
             }
-            set.add(sum);
         }
         
         return false;
