@@ -1,37 +1,30 @@
 class Solution {
     public int numDecodings(String s) {
-        int[] memo = new int[s.length()];
-        Arrays.fill(memo, -1);
-        return topDownDecode(s, 0, memo);
-    }
-
-    private int topDownDecode(String s, int index, int[] memo) {
-        // Base case: if the index reaches the end of the string
-        if (index == s.length()) {
-            return 1; // This is a valid decoding
+        int n = s.length();
+        if (n == 0) {
+            return 0;
         }
 
-        // Check memoization table
-        if (memo[index] != -1) {
-            return memo[index];
+        // Initialize the DP array
+        int[] dp = new int[n + 1];
+        dp[n] = 1; // There is one way to decode an empty string
+
+        // Fill in the DP array from right to left
+        for (int i = n - 1; i >= 0; i--) {
+            // Check for leading zero
+            if (s.charAt(i) == '0') {
+                dp[i] = 0;
+            } else {
+                // Decode single digit
+                dp[i] += dp[i + 1];
+
+                // Decode two digits if possible
+                if (i + 1 < n && Integer.parseInt(s.substring(i, i + 2)) <= 26) {
+                    dp[i] += dp[i + 2];
+                }
+            }
         }
 
-        // Check for leading zero
-        if (s.charAt(index) == '0') {
-            return 0; // This decoding is invalid
-        }
-
-        // Decode single digit
-        int ways = topDownDecode(s, index + 1, memo);
-
-        // Decode two digits if possible
-        if (index + 1 < s.length() && Integer.parseInt(s.substring(index, index + 2)) <= 26) {
-            ways += topDownDecode(s, index + 2, memo);
-        }
-
-        // Memoize the result
-        memo[index] = ways;
-
-        return ways;
+        return dp[0];
     }
 }
