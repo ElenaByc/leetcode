@@ -13,6 +13,6 @@ class Solution {
         if (n < 3) {
             return word.toLowerCase();
         }
-        return Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+        return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
     }
 }
