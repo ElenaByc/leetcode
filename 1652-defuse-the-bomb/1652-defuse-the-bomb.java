@@ -3,24 +3,22 @@ class Solution {
         int n = code.length;
         int[] result = new int[n];
         int idx;
-        
         if (k == 0) return result;
         
-        for (int i = 0; i < n; i++) {
-            // System.out.println("i = " + i);
-            for (int j = 1; j < Math.abs(k) + 1; j++) {
-                idx = i + k / Math.abs(k) * j;
-                if (idx >= n) {
-                    idx -= n;
-                } else if (idx < 0) {
-                    idx += n;
-                }
-                // System.out.println("j = " + j + " idx = " + idx);
-                result[i] += code[idx];
-            }
-            // System.out.println(Arrays.toString(result));
+        //Define the initial window and initial sum
+        int start = 1, end = k, sum = 0;
+        if (k < 0) {
+            k = -k;
+            start = n - k;
+            end = n - 1;
         }
-        
+        for (int i = start; i <= end; i++) sum += code[i];
+        //Scan through the code array as i moving to the right, update the window sum.
+        for (int i = 0; i < n; i++) {
+            result[i] = sum;
+            sum -= code[(start++) % n];
+            sum += code[(++end) % n];
+        }
         
         return result;
     }
