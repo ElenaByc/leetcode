@@ -15,21 +15,30 @@
  */
 class Solution {
     public boolean findTarget(TreeNode root, int k) {
-        Set<Integer> set = new HashSet<>();
-        return twoSum(set, root, k);     
+        List<Integer> inorder = new ArrayList<>();
+        getAllValues(inorder, root);     
+        int left = 0;
+        int right = inorder.size() - 1;
+        int sum;
+        while (left < right) {
+            sum = inorder.get(left) + inorder.get(right);
+            if (sum == k) {
+                return true;
+            } else if (sum > k) {
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return false;
     }
     
-    public boolean twoSum(Set set, TreeNode node, int k) {
+    public void getAllValues(List inorder, TreeNode node) {
         if (node == null) {
-            return false;
+            return;
         }
-        int num = k - node.val;
-        
-        if (set.contains(num)) {
-            return true;
-        }
-        set.add(node.val);
-        // System.out.println(set);
-        return twoSum(set, node.left, k) || twoSum(set, node.right, k);
+        getAllValues(inorder, node.left);
+        inorder.add(node.val);
+        getAllValues(inorder, node.right);
     }
 }
