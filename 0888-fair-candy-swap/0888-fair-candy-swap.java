@@ -8,12 +8,16 @@ class Solution {
         for (int num : bobSizes) {
             sumB += num;
         }
+        Set<Integer> set = new HashSet<>();  
+        int target = (sumA - sumB) / 2;
         
         for (int numA : aliceSizes) {
-            for (int numB : bobSizes) {
-                if (2 * (numB - numA) == sumB - sumA ) {
-                    return new int[] {numA, numB};
-                }
+            set.add(numA - target);
+        }
+        
+        for (int numB : bobSizes) {
+            if (set.contains(numB)) {
+                return new int[] {target + numB, numB};
             }
         }
         
