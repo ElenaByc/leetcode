@@ -26,7 +26,7 @@ class Solution {
                     result[i] = "Bronze Medal";
                     break;
                 default:
-                    result[i] = "" + rank;
+                    result[i] = Integer.toString(rank);
             }
         }
         
