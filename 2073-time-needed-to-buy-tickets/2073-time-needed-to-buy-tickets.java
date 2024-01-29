@@ -2,17 +2,22 @@ class Solution {
     public int timeRequiredToBuy(int[] tickets, int k) {
         int time = 0;
         int n = tickets.length;
-        while (tickets[k] > 0) {
-            for (int i = 0; i < n; i++) {
-                if (tickets[i] > 0) {
-                    tickets[i]--;
-                    time++;
+        for (int i = 0; i < n; i++) {
+            if (i <= k) {
+                if (tickets[i] < tickets[k]) {
+                    time += tickets[i];
+                } else {
+                    time += tickets[k];
                 }
-                if (i == k && tickets[i] == 0) {
-                    break;
+            } else {
+                if (tickets[i] < tickets[k]) {
+                    time += tickets[i];
+                } else {
+                    time += tickets[k] - 1;
                 }
             }
         }
+        
         return time;
     }
 }
