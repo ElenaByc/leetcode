@@ -15,25 +15,10 @@
  */
 class Solution {
     public int minDiffInBST(TreeNode root) {
-        // get all values into list 
-        // sort them 
-        // find diff
         List<Integer> list = new ArrayList<>();
-        Queue<TreeNode> q = new LinkedList<>();
+        inOrder(list, root);
+        
         int minDiff = Integer.MAX_VALUE;
-        q.offer(root);
-        TreeNode node;
-        while(q.size() > 0) {
-            node = q.poll();
-            list.add(node.val);
-            if(node.left != null) {
-                q.offer(node.left);
-            }
-            if(node.right != null) {
-                q.offer(node.right);
-            }
-        }
-        Collections.sort(list);  
         // System.out.println(list);
         
         for (int i = 1; i < list.size(); i++) {
@@ -43,7 +28,15 @@ class Solution {
             }
         }
         
-        
         return minDiff;
+    }
+    
+    public void inOrder(List<Integer> list, TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        inOrder(list, node.left);
+        list.add(node.val);
+        inOrder(list, node.right);
     }
 }
