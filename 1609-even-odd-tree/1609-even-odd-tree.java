@@ -16,11 +16,11 @@
 class Solution {
     public boolean isEvenOddTree(TreeNode root) {
         Queue<TreeNode> currentLevel = new LinkedList<>();
-        Queue<TreeNode> nextLevel = new LinkedList<>();
         int level = 0;
         currentLevel.add(root);
         TreeNode node;
         int prevVal;
+        int size;
         
         while(currentLevel.size() > 0) {
             // System.out.println("level = " + level);
@@ -29,9 +29,11 @@ class Solution {
             } else {
                 prevVal = 1000001;
             }
+            size = currentLevel.size();
             
-            while(currentLevel.size() > 0) {
+            while(size > 0) {
                 node = currentLevel.poll();
+                size--;
                 if (node.val % 2 == level % 2) {
                     return false;
                 } 
@@ -43,14 +45,11 @@ class Solution {
                 }
                 prevVal = node.val;
                 if (node.left != null) {
-                    nextLevel.add(node.left);
+                    currentLevel.add(node.left);
                 }
                 if (node.right != null) {
-                    nextLevel.add(node.right);
+                    currentLevel.add(node.right);
                 }
-            }
-            while(nextLevel.size() > 0) {
-                currentLevel.add(nextLevel.poll());
             }
             level++;
             
