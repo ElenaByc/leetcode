@@ -1,27 +1,25 @@
 class Solution {
     public int rearrangeCharacters(String s, String target) {
-        HashMap<Character, Integer> hmS = new HashMap<>();
-        HashMap<Character, Integer> hmT = new HashMap<>();
+        int[] arrS = new int[26];
+        int[] arrT = new int[26];
         int min = Integer.MAX_VALUE;
-        char ch;
-        
+
         for (int i = 0; i < s.length(); i++) {
-            ch = s.charAt(i);
-            hmS.put(ch, hmS.getOrDefault(ch, 0) + 1);
+            arrS[s.charAt(i) -'a']++;
         }
         
         for (int i = 0; i < target.length(); i++) {
-            ch = target.charAt(i);
-            hmT.put(ch, hmT.getOrDefault(ch, 0) + 1);
+            arrT[target.charAt(i) -'a']++;
         }
         
-        for (Character letter : hmT.keySet()) {
-            if (!hmS.containsKey(letter)) {
-                return 0;
+        for (int i = 0; i < 26; i++) {
+            if (arrT[i] > 0) {
+                min = Math.min(arrS[i] / arrT[i], min);
+                if (min == 0) {
+                    return min;
+                }
             }
-            min = Math.min(hmS.get(letter) / hmT.get(letter), min);
         }
-        
         
         return min;
     }
