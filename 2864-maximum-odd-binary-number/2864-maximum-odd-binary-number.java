@@ -3,13 +3,18 @@ class Solution {
         int n = s.length();
         int counter = 0;
         for (int i = 0; i < n; i++) {
-            if (s.charAt(i) == '1') {
-                counter++;
-            }
+            counter += s.charAt(i) - '0';
         }
-        if (counter == 1) {
-            return "0".repeat(n-1) + "1";
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = 0; i < counter - 1; i++) {
+            sb.append("1");
         }
-        return "1".repeat(counter - 1) + "0".repeat(n - counter) + "1";
+        for (int i = 0; i < n - counter; i++) {
+            sb.append("0");
+        }
+        
+        sb.append("1");
+        return sb.toString();
     }
 }
