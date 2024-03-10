@@ -1,20 +1,25 @@
 class Solution {
-   public int[] set_intersection(HashSet<Integer> set1, HashSet<Integer> set2) {
-    int [] output = new int[set1.size()];
-    int idx = 0;
-    for (Integer s : set1)
-      if (set2.contains(s)) output[idx++] = s;
-
-    return Arrays.copyOf(output, idx);
-  }
-
-  public int[] intersection(int[] nums1, int[] nums2) {
-    HashSet<Integer> set1 = new HashSet<Integer>();
-    for (Integer n : nums1) set1.add(n);
-    HashSet<Integer> set2 = new HashSet<Integer>();
-    for (Integer n : nums2) set2.add(n);
-
-    if (set1.size() < set2.size()) return set_intersection(set1, set2);
-    else return set_intersection(set2, set1);
-  }
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> set2 = new HashSet<>();
+        Set<Integer> result = new HashSet<>();
+        
+        for (int num : nums2) {
+            set2.add(num);
+        }
+        
+        for (int num : nums1) {
+            if (set2.contains(num)) {
+                result.add(num);
+            }
+        }
+        
+        int n = result.size();
+        int[] res = new int[n];
+        List<Integer> list = new ArrayList<>(result);
+        for (int i = 0; i < n; i++) {
+            res[i] = list.get(i);
+        }
+        
+        return res;
+    }
 }
