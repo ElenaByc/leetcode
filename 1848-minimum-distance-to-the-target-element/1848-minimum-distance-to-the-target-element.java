@@ -9,12 +9,11 @@ class Solution {
         while (left >= 0 && nums[left] != target) {
             left--;
         }
-        System.out.println("left = " + left);
         
         while (right < n && nums[right] != target) {
             right++;
         }
-        System.out.println("right = " + right);
+
         if (left < 0) return right - start;
         if (right == n) return start - left;
         return Math.min(start - left, right - start);
