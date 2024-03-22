@@ -13,23 +13,17 @@ class Solution {
         if (head == null || head.next == null) {
             return true;
         }
-        ListNode node = head;
-        List<Integer> list = new ArrayList<>();
-        
-        while (node != null) {
-            list.add(node.val);
-            node = node.next;
+        Stack<Integer> stack = new Stack();
+        ListNode curr = head;
+        while(curr != null) {
+            stack.push(curr.val);
+            curr = curr.next;
         }
-        
-        int n = list.size();
-        
-        for (int i = 0; i < n /2; i++) {
-            if (list.get(i) != list.get(n - 1 - i)) {
-                return false;
-            }
+        curr = head;
+        while(curr != null && curr.val == stack.pop()) {
+            curr = curr.next;
         }
-        
-        return true;
+        return curr == null;
         
     }
 }
