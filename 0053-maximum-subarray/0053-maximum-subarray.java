@@ -17,6 +17,7 @@ class Solution {
         
         for (int i = firstPositive; i < n ; i++) {
             sum += nums[i];
+  
             if (sum < 0) {
                 sum = 0;
             }
