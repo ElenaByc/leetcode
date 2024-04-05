@@ -1,23 +1,27 @@
 class Solution {
     public String makeGood(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        boolean good = false;
-        char prevChar;
+        int n = s.length();
+        StringBuilder sb = new StringBuilder();
+        char ch;
+        char prevCh;
         
-        while(!good && sb.length() > 0) {
-            prevChar = sb.charAt(0);
-            good = true;
-            for (int i = 1; i < sb.length(); i++) {
-                if (Math.abs(prevChar - sb.charAt(i)) == 32) {
-                    good = false;
-                    sb.delete(i - 1, i + 1);
-                    break;
+        for (int i = 0; i < n; i++) {
+            ch = s.charAt(i);
+            if (sb.length() > 0) {
+                prevCh = sb.charAt(sb.length() - 1);
+                if (ch != prevCh && Character.toLowerCase(ch) == Character.toLowerCase(prevCh)) {
+                    // do not add this ch
+                    // remove last ch from sb
+                    sb.deleteCharAt(sb.length() - 1);
                 } else {
-                    prevChar = sb.charAt(i);
+                    sb.append(ch);
                 }
+            } else {
+                sb.append(ch);
             }
         }
         
         return sb.toString();
+            
     }
 }
