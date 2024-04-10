@@ -3,22 +3,22 @@ class Solution {
         int cnt1 = 0;
         int cnt2 = 0;
         
-        var set1 = new HashSet<Integer>();
+        int[] arr = new int[101];
         for(int num : nums1) {
-            set1.add(num);
+            arr[num]++;
         }
         for (int num : nums2) {
-            if (set1.contains(num)) {
+            if (arr[num] > 0) {
                 cnt2++;
             }
         }
         
-        var set2 = new HashSet<Integer>();
+        arr = new int[101];
         for(int num : nums2) {
-            set2.add(num);
+            arr[num]++;
         }
         for (int num : nums1) {
-            if (set2.contains(num)) {
+            if (arr[num] > 0) {
                 cnt1++;
             }
         }
