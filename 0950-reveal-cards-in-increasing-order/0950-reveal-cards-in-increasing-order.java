@@ -2,23 +2,24 @@ class Solution {
     public int[] deckRevealedIncreasing(int[] deck) {
         int n = deck.length;
         int[] ans = new int[n];
-        int idx;
-        Queue<Integer> q = new LinkedList<>();
+        int idxD = 0;
+        int idxA = 0;
+        boolean skip = false;
         
         Arrays.sort(deck);
         
-        for (int i = 0; i < n; i++) {
-            q.add(i);
-        }
-        
-        for (int i = 0; i < n; i++) {
-            // step1
-            idx = q.poll();
-            ans[idx] = deck[i];
-            // step2
-            if (!q.isEmpty()) {
-                idx = q.poll();
-                q.add(idx);
+
+        while (idxD < n) {
+            if(ans[idxA] == 0) {
+                if (!skip) {
+                    ans[idxA] = deck[idxD];
+                    idxD++;
+                }
+                skip = !skip;
+            }
+            idxA++;
+            if (idxA == n) {
+                idxA = 0;
             }
         }
         
