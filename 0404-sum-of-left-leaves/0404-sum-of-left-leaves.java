@@ -15,20 +15,22 @@
  */
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        
-        int ans = 0;
-        if(root.left != null) {
-            if(root.left.left == null && root.left.right == null) {
-                ans += root.left.val;
-            } else {
-                ans += sumOfLeftLeaves(root.left);
-            }
-        }
-        ans += sumOfLeftLeaves(root.right);
-
-        return ans;
+        return helper(root, false);    
     }
+    
+    public int helper(TreeNode node, boolean isLeft) {
+        if (node.left == null && node.right == null) {
+            // leaf
+            return isLeft? node.val : 0;
+        }
+        if (node.left == null) {
+            return helper(node.right, false);
+        }
+        if (node.right == null) {
+            return helper(node.left, true);
+        }
+        return helper(node.left, true) + helper(node.right, false); 
+    }
+    
+    
 }
