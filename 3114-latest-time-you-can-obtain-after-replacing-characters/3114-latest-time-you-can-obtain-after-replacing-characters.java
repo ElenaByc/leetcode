@@ -1,38 +1,27 @@
 class Solution {
     public String findLatestTime(String s) {
-        StringBuilder result = new StringBuilder();
-        if (s.charAt(0) == '?') {
-            if (s.charAt(1) == '?' || s.charAt(1) == '1') {
-                result.append("11");
-            } else if (s.charAt(1) == '0') {
-                result.append("10");
+        char[] arr = s.toCharArray();
+        if (arr[0] == '?') {
+            if (arr[1] == '?' || arr[1] < '2') {
+                arr[0] = '1';
             } else {
-                result.append("0" + s.charAt(1));
-            }
-        } else {
-            result.append(s.charAt(0));
-            if (s.charAt(1) == '?') {
-                if (s.charAt(0) == '0') {
-                    result.append("9");
-                } else {
-                    result.append("1");
-                }
-            } else {
-                result.append(s.charAt(1));
+                arr[0] = '0';
             }
         }
-        result.append(":");
-        if (s.charAt(3) == '?') {
-            result.append("5");
-        } else {
-            result.append(s.charAt(3));
+        if (arr[1] == '?') {
+            if (arr[0] == '0') {
+                arr[1] = '9';
+            } else {
+                arr[1] = '1';
+            }
         }
-        if (s.charAt(4) == '?') {
-            result.append("9");
-        } else {
-            result.append(s.charAt(4));
+        if (arr[3] == '?') {
+            arr[3] = '5';
+        }
+        if (arr[4] == '?') {
+            arr[4] = '9';
         }
                 
-        return result.toString();
+        return new String(arr);
     }
 }
