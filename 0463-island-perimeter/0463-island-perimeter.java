@@ -1,29 +1,31 @@
 class Solution {
     public int islandPerimeter(int[][] grid) {
-        int row = grid.length;
-        int col = grid[0].length;
-        int perimeter = 0;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (grid[i][j] == 1) {
-                    if ((j > 0 && grid[i][j-1] == 0) || (j == 0)) {
-                        perimeter++;
+        int p = 0;
+        int n = grid.length;
+        int m = grid[0].length;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if(grid[i][j] == 1) {
+                    p += 4; 
+                    // count number of neighbors
+                    if (i > 0 && grid[i - 1][j] == 1) {
+                        p--;
                     }
-                    if ((i > 0 && grid[i-1][j] == 0) || (i == 0)) {
-                        perimeter++;
+                    if (i < n - 1 && grid[i + 1][j] == 1) {
+                        p--;
                     }
-                    if ((j < col - 1 && grid[i][j+1] == 0) || (j == col - 1)) {
-                        perimeter++;
+                    if (j > 0 && grid[i][j - 1] == 1) {
+                        p--;
                     }
-                    if ((i < row - 1 && grid[i+1][j] == 0) || (i == row - 1)) {
-                        perimeter++;
+                    if (j < m - 1 && grid[i][j + 1] == 1) {
+                        p--;
                     }
-                        
                 }
             }
         }
-            
-            
-        return perimeter;
+        
+        
+        return p;
     }
 }
