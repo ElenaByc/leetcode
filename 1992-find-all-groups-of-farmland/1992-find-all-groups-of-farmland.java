@@ -2,7 +2,6 @@ class Solution {
     public int[][] findFarmland(int[][] land) {
         int m = land.length;
         int n = land[0].length;
-        int cnt = 0;
         int x1, y1, x2, y2;
         var list = new ArrayList<int[]>();
         
@@ -22,7 +21,6 @@ class Solution {
                     }
                     x2--;
                     list.add(new int[] {x1, y1, x2, y2});
-                    cnt++;
                     for (int k = x1; k <= x2; k++) {
                         for (j = y1; j <= y2; j++) {
                             land[k][j] = 0;
@@ -32,8 +30,8 @@ class Solution {
             }
         }
         
-        int[][] result = new int[cnt][4];
-        for (int i = 0; i < cnt; i++) {
+        int[][] result = new int[list.size()][4];
+        for (int i = 0; i < list.size(); i++) {
             result[i] = list.get(i);
         }
         
