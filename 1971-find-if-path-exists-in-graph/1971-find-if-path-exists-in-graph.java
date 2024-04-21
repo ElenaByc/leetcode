@@ -23,6 +23,7 @@ class Solution {
             list.add(e[0]);
             hm.put(e[1], list);
         }
+        
         if (!hm.containsKey(s) || !hm.containsKey(d)) {
             return false;
         }
@@ -30,21 +31,19 @@ class Solution {
         // System.out.println(hm);
         int v;
         int componentCnt = 1;
-        for (int i = 0; i < n; i++) {
+        for (int i : hm.keySet()) {
             // System.out.println("i = " + i);
             // System.out.println(Arrays.toString(components));
             if (components[i] == 0) {
                 components[i] = componentCnt;
                 v = i;
-                if (hm.containsKey(v)) {
-                    list = hm.get(v);
-                    while (!list.isEmpty()) {
-                        v = (int)list.poll();
-                        components[v] = componentCnt;
-                        for (int v1 : hm.get(v)) {
-                            if (components[v1] == 0) {
-                                list.add(v1);
-                            }
+                list = hm.get(v);
+                while (!list.isEmpty()) {
+                    v = (int)list.poll();
+                    components[v] = componentCnt;
+                    for (int v1 : hm.get(v)) {
+                        if (components[v1] == 0) {
+                            list.add(v1);
                         }
                     }
                 }
