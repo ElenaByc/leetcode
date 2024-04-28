@@ -1,19 +1,16 @@
 class Solution {
     public boolean isCovered(int[][] ranges, int left, int right) {
-        boolean[] arr = new boolean[right + 1];
-        
-        for (int[] r : ranges) {
-            for (int i = r[0]; i <= Math.min(r[1], right); i++) {
-                arr[i] = true;
+        boolean covered;
+        for(int i = left; i <= right; i++){
+            covered = false;
+            for(int[] r : ranges) {
+                if ( i >= r[0] && i <= r[1]) {
+                    covered = true;
+                    break;
+                }
             }
+            if (!covered) return false;
         }
-        
-        for (int i = left; i <= right; i++) {
-            if (!arr[i]) {
-                return false;
-            }
-        }
-        
         return true;
     }
 }
