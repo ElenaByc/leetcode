@@ -2,12 +2,10 @@ class Solution {
     public String[] findRelativeRanks(int[] score) {
         int n = score.length;
         String[] result = new String[n];
-        int[] scoreSorted = new int[n];
+        int[] scoreSorted = Arrays.copyOf(score, n);
         HashMap<Integer, Integer> hm = new HashMap<>();
         int rank;
-        for (int i = 0; i < n; i++) {
-            scoreSorted[i] = score[i];
-        }
+        
         Arrays.sort(scoreSorted);
         for (int i = 0; i < n; i++) {
             hm.put(scoreSorted[i], n - i);
