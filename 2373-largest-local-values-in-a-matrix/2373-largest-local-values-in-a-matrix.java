@@ -1,7 +1,7 @@
 class Solution {
     public int[][] largestLocal(int[][] grid) {
         int n  = grid.length;
-        int[][] result = new int[n-2][n-2];
+        int[][] result = new int[n - 2][n - 2];
         int max;
         
         for (int i = 0; i < n - 2; i++) {
@@ -13,8 +13,7 @@ class Solution {
                     }
                 }
                 result[i][j] = max;
-            }
-            
+            }   
         }
         
         return result;
