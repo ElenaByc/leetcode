@@ -1,5 +1,5 @@
 class Solution {
-    public int subsetXORSum(int[] nums) {
+   public int subsetXORSum(int[] nums) {
         return helper(nums, 0, 0);
     }
     
