@@ -1,29 +1,14 @@
 class Solution {
     public String reverseStr(String s, int k) {
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        int n = s.length();
-        while (i < n) {
-            if (i + k < n) {
-                // reverse
-                for (int j = i + k - 1; j >= i; j--) {
-                    sb.append(s.charAt(j));
-                }
-            } else {
-                for (int j = n - 1; j >= i; j--) {
-                    sb.append(s.charAt(j));
-                }
+        char[] a = s.toCharArray();
+        for (int start = 0; start < a.length; start += 2 * k) {
+            int i = start, j = Math.min(start + k - 1, a.length - 1);
+            while (i < j) {
+                char tmp = a[i];
+                a[i++] = a[j];
+                a[j--] = tmp;
             }
-            i += k;
-            if (i + k < n) {
-                sb.append(s.substring(i, i + k));
-            } else if (i < n) {
-                sb.append(s.substring(i));
-            }
-            i += k;
         }
-        
-        
-        return sb.toString();
+        return new String(a);
     }
 }
