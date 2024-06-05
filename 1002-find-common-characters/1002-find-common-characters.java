@@ -1,39 +1,31 @@
 class Solution {
+
     public List<String> commonChars(String[] words) {
-        List<String> common = new ArrayList<>();
         int n = words.length;
-        int[][] freq = new int[n][26];
-        char ch;
-        int min;
-        
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < words[i].length(); j++) {
-                ch = words[i].charAt(j);
-                freq[i][ch - 'a']++;
+        int[] common = new int[26];
+        int[] current = new int[26];
+        List<String> result = new ArrayList<>();
+
+        for (char ch : words[0].toCharArray()) {
+            common[ch - 'a']++;
+        }
+
+        for (int i = 1; i < n; i++) {
+            Arrays.fill(current, 0);
+            for (char ch : words[i].toCharArray()) {
+                current[ch - 'a']++;
+            }
+            for (int ch = 0; ch < 26; ch++) {
+                common[ch] = Math.min(common[ch], current[ch]);
             }
         }
         
-        for (int j = 0; j < 26; j++) {
-            if (freq[0][j] == 0) {
-                continue;
-            }
-            min = freq[0][j];
-            for (int i = 1; i < n; i++) {
-                min = Math.min(freq[i][j], min);
-                if (min == 0) {
-                    break;
-                }
-            }
-            if (min == 0) {
-                continue;
-            } 
-            ch = (char)('a' + j);
-            for (int k = 0; k < min; k++) {
-                common.add("" + ch);
+        for (int ch = 0; ch < 26; ch++) {
+            for ( int i = 0; i < common[ch]; i++) {
+                result.add(String.valueOf((char) (ch + 'a')));
             }
         }
-        
-        
-        return common;
+
+        return result;
     }
 }
