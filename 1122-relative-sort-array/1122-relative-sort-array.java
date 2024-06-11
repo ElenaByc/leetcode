@@ -1,18 +1,5 @@
 class Solution {
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
-//         HashMap<Integer, Integer> hm = new HashMap<>();
-        
-//         for (int i = 0; i < arr2.length; i++){
-//             hm.put(arr[i], i);
-//         }   
-        
-//         int n = arr1.length;
-//         int[] result = new int[n];
-        
-//         for (int i = 0; i < n; i++) {
-            
-//         }
-        
         int[] count = new int[1001]; // since numbers are from [0, 1000]
 
         for (int num : arr1) {
