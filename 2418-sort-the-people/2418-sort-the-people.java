@@ -1,19 +1,20 @@
 class Solution {
+
     public String[] sortPeople(String[] names, int[] heights) {
-        int n = names.length;
-        String[] namesSorted = new String[n];
-        HashMap<Integer, String> hm = new HashMap<>();
-        
-        for (int i = 0; i < n; i++) {
-            hm.put(heights[i], names[i]);
+        int numberOfPeople = names.length;
+        TreeMap<Integer, String> heightToNameMap = new TreeMap<>();
+        for (int i = 0; i < numberOfPeople; i++) {
+            heightToNameMap.put(heights[i], names[i]);
         }
-        
-        Arrays.sort(heights);
-        
-        for (int i = 0; i < n; i++) {
-             namesSorted[i] = hm.get(heights[n - 1 - i]);
+
+        String[] sortedNames = new String[numberOfPeople];
+        int currentIndex = numberOfPeople - 1;
+
+        for (int height : heightToNameMap.keySet()) {
+            sortedNames[currentIndex] = heightToNameMap.get(height);
+            currentIndex--;
         }
-        
-        return namesSorted;
+
+        return sortedNames;
     }
 }
