@@ -1,19 +1,24 @@
 class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
-        int[] cnt = new int[1001];
-        int n = target.length;
+        int[] nums = new int [1001];
         
-        for (int i = 0; i < n; i++) {
-            cnt[target[i]]++;
-            cnt[arr[i]]--;
+        for (int n : target) {
+            nums[n]++;
         }
-        for (int i = 0; i < 1001; i++) {
-            if (cnt[i] != 0) {
+        
+        for (int n : arr) {
+            nums[n]--;
+            if(nums[n] < 0) {
+                return false;
+            }
+        }
+        
+        for (int n : nums) {
+            if (nums[n] != 0) {
                 return false;
             }
         }
         
         return true;
-        
     }
 }
