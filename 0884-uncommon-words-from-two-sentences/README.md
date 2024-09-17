@@ -6,12 +6,25 @@
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
-<pre><strong>Input:</strong> s1 = "this apple is sweet", s2 = "this apple is sour"
-<strong>Output:</strong> ["sweet","sour"]
-</pre><p><strong class="example">Example 2:</strong></p>
-<pre><strong>Input:</strong> s1 = "apple apple", s2 = "banana"
-<strong>Output:</strong> ["banana"]
-</pre>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s1 = "this apple is sweet", s2 = "this apple is sour"</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">["sweet","sour"]</span></p>
+
+<p><strong>Explanation:</strong></p>
+
+<p>The word <code>"sweet"</code> appears only in <code>s1</code>, while the word <code>"sour"</code> appears only in <code>s2</code>.</p>
+</div>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">s1 = "apple apple", s2 = "banana"</span></p>
+
+<p><strong>Output:</strong> <span class="example-io">["banana"]</span></p>
+</div>
+
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
